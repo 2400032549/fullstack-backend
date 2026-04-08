@@ -1,0 +1,21 @@
+package com.mentor360.dto;
+
+import lombok.Data;
+
+@Data
+public class MatchResponseDTO {
+
+    private Long id;
+
+    // Mentor fields
+    private Long mentorId;
+    private String mentorName;
+    private String mentorEmail;
+
+    // Mentee fields
+    private Long menteeId;
+    private String menteeName;
+    private String menteeEmail;
+
+    private String status;
+}

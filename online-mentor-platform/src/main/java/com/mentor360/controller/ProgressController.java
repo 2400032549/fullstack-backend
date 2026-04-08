@@ -1,0 +1,62 @@
+package com.mentor360.controller;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.mentor360.dto.ProgressRequestDTO;
+import com.mentor360.dto.ProgressResponseDTO;
+import com.mentor360.service.ProgressService;
+
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+
+@RestController
+@RequestMapping("/advancement")
+@RequiredArgsConstructor
+@PreAuthorize("hasAnyRole('MENTEE','MENTOR')")
+public class ProgressController {
+
+    private final ProgressService progressService;
+
+    @PostMapping
+    @PreAuthorize("hasRole('MENTOR')")   // ✅ Only mentor creates
+    public ResponseEntity<ProgressResponseDTO> createProgress(
+            @Valid @RequestBody ProgressRequestDTO request,
+            Authentication auth) {
+
+        return ResponseEntity.ok(
+                progressService.createProgress(auth.getName(), request)
+        );
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProgressResponseDTO> updateProgress(
+            @PathVariable Long id,
+            @Valid @RequestBody ProgressRequestDTO request,
+            Authentication auth) {
+
+        return ResponseEntity.ok(
+                progressService.updateProgress(auth.getName(), id, request)
+        );
+    }
+
+    @GetMapping("/match/{matchId}")
+    public ResponseEntity<List<ProgressResponseDTO>> getByMatch(
+            @PathVariable Long matchId,
+            Authentication auth) {
+
+        return ResponseEntity.ok(
+                progressService.getProgressByMatch(auth.getName(), matchId)
+        );
+    }
+}
