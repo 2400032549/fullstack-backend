@@ -59,11 +59,11 @@ public class AuthServiceImpl implements AuthService {
         try {
             emailService.sendEmail(
                     user.getEmail(),
-                    "Welcome to MentorConnect 🎉",
+                    "Mentor360 Account Verification",
                     "Hi " + user.getName() + ",\n\n" +
-                    "Your account has been successfully created.\n" +
-                    "Start exploring mentors now!\n\n" +
-                    "— MentorConnect Team"
+                    "Thank you for registering with Mentor360.\n" +
+                    "Please verify your email address and update your profile to complete setup.\n\n" +
+                    "— Mentor360 Team"
             );
         } catch (Exception e) {
             // ⚠️ Do NOT fail registration if email fails

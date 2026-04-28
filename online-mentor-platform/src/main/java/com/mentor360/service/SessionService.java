@@ -1,13 +1,10 @@
 package com.mentor360.service;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 import com.mentor360.dto.SessionRequestDTO;
 import com.mentor360.dto.SessionResponseDTO;
-import com.mentor360.model.Session;
 import com.mentor360.model.enums.SessionStatus;
-
-import java.util.List;
 
 public interface SessionService {
 

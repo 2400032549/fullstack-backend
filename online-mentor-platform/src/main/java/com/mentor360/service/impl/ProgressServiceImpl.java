@@ -1,14 +1,11 @@
 package com.mentor360.service.impl;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.mentor360.dto.ProgressRequestDTO;
 import com.mentor360.dto.ProgressResponseDTO;
-import com.mentor360.exception.ResourceNotFoundException;
 import com.mentor360.model.MentorshipMatch;
 import com.mentor360.model.Progress;
 import com.mentor360.model.User;
